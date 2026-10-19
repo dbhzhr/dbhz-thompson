@@ -1,0 +1,32 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  // Landing iz public/ na dbhz-thompson.domovina.ai. Worker hvata samo videe
+  // (iz R2, zbog Range zahtjeva), sve ostalo su statički asseti.
+  // Jedno okruženje: ovaj deploy JE produkcija.
+  "name": "dbhz-thompson",
+  "main": "src/index.js",
+  "account_id": "7dc7167b7e2e00923bfa7cd697df14e4", // D.O.M.
+  "compatibility_date": "2026-09-01",
+  "workers_dev": false,
+  "preview_urls": false,
+
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/video/*"],
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "single-page-application"
+  },
+
+  // Video: npx wrangler r2 object put dbhz-thompson/video/<ime>.mp4 \
+  //   --file media/<ime>.mp4 --content-type video/mp4 --remote
+  "r2_buckets": [
+    { "binding": "BUCKET", "bucket_name": "dbhz-thompson" }
+  ],
+
+  "routes": [
+    { "pattern": "dbhz-thompson.domovina.ai", "custom_domain": true }
+  ],
+
+  "observability": { "enabled": true }
+}
