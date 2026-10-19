@@ -55,7 +55,7 @@ h1{font-family:"Cinzel",Georgia,serif;font-weight:700;font-size:clamp(38px,7vw,8
 section{padding:72px 0;border-top:1px solid rgba(239,233,216,.06)}
 h2{font-family:"Cinzel",Georgia,serif;font-size:clamp(26px,4vw,40px);letter-spacing:.05em;line-height:1.15;margin:0 0 14px}
 .sub{color:var(--muted);max-width:64ch;margin:0 0 36px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .card{border:1px solid var(--line);border-radius:14px;padding:22px;background:rgba(239,233,216,.02)}
 .card b{display:block;color:var(--gold);font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
 .card h3{font-family:"Cinzel",Georgia,serif;margin:0 0 8px;font-size:21px;letter-spacing:.04em}
@@ -85,9 +85,10 @@ footer p{margin:0 0 8px}
       <button type="button" id="zvuk" class="zvuk" hidden>🔊 Uključi zvuk</button>
     </div>
     <div class="formats" role="group" aria-label="Isječak pjesme">
-      <button type="button" data-isjecak="a" aria-pressed="true">A · 60 s · krunidba i refren</button>
-      <button type="button" data-isjecak="b" aria-pressed="false">B · 34 s · samo refren</button>
-      <button type="button" data-isjecak="c" aria-pressed="false">C · 48 s · Tomislav je kralj</button>
+      <button type="button" data-isjecak="a" aria-pressed="true">A · 68 s · krunidba i refren</button>
+      <button type="button" data-isjecak="b" aria-pressed="false">B · 42 s · samo refren</button>
+      <button type="button" data-isjecak="d" aria-pressed="false">D · 50 s · Kad s perona siđeš</button>
+      <button type="button" data-isjecak="c" aria-pressed="false">C · 75 s · Tomislav je kralj</button>
     </div>
     <div class="formats" role="group" aria-label="Format videa">
       <button type="button" data-format="16x9" aria-pressed="true">16:9 · YouTube</button>
@@ -102,10 +103,12 @@ footer p{margin:0 0 8px}
       <h2>Isječci</h2>
       <p class="sub">Svaki isječak je ista 3D scena, montirana na drugi dio pjesme. Vremena su izmjerena iz pjesme (ritam i stihovi), ne odokativno.</p>
       <div class="cards">
-        <div class="card"><b>A · 60 s</b><h3>Krunidba i refren</h3><p>„Na Duvanjskom polju ravnom okruniše kralja” do prvog refrena „Žezlo i kruna”.</p></div>
-        <div class="card"><b>B · 34 s</b><h3>Samo refren</h3><p>Kratki rez za Reels i Shorts: „Žezlo i kruna, od Jadranskog mora pa do rijeke Drave”.</p></div>
-        <div class="card"><b>C · 48 s</b><h3>Tomislav je kralj</h3><p>„Blagoslov od Pape – Tomislav je kralj” i završna strofa „Još zemlja se mrvi”.</p></div>
+        <div class="card"><b>A · 68 s</b><h3>Krunidba i refren</h3><p>„Na Duvanjskom polju ravnom okruniše kralja” do kraja prvog refrena „…branili je vitezovi iz novih vremena”.</p></div>
+        <div class="card"><b>B · 42 s</b><h3>Samo refren</h3><p>Kratki rez za Reels i Shorts: cijeli refren, od „Žezlo i kruna” do „…iz novih vremena”.</p></div>
+        <div class="card"><b>D · 50 s</b><h3>Kad s perona siđeš</h3><p>Najgledaniji dio spota: „Kad s perona siđeš, vidiš bijeli Zagreb grad, Tomislav na konju…” do „…o junaštvu tvom”.</p></div>
+        <div class="card"><b>C · 75 s</b><h3>Tomislav je kralj</h3><p>„Blagoslov od Pape – Tomislav je kralj”, „Još zemlja se mrvi” i „Kroz Bosnu… Kraljevstvo tvoje”.</p></div>
       </div>
+      <p class="sub">Svaki video počinje i završava karticom DBHZ-a, reže se u pauzi vokala, a uz stihove nosi jednu povijesnu činjenicu (Hrvatska enciklopedija, HAZU) i jedan citat crkvenog nauka o domoljublju.</p>
     </div>
   </section>
 
@@ -133,8 +136,8 @@ footer p{margin:0 0 8px}
   var video = document.getElementById("video");
   var formatButtons = document.querySelectorAll("[data-format]");
   var isjecakButtons = document.querySelectorAll("[data-isjecak]");
-  // #b / #c u adresi otvara taj isječak (za dijeljenje linka).
-  var stanje = { isjecak: /^#[bc]$/.test(location.hash) ? location.hash.slice(1) : "a", format: "16x9" };
+  // #b / #c / #d u adresi otvara taj isječak (za dijeljenje linka).
+  var stanje = { isjecak: /^#[bcd]$/.test(location.hash) ? location.hash.slice(1) : "a", format: "16x9" };
   // Na uskom ekranu u portretu kreni s 9:16.
   if (window.matchMedia("(max-width: 600px) and (orientation: portrait)").matches) stanje.format = "9x16";
   var zvuk = document.getElementById("zvuk");

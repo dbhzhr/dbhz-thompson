@@ -105,6 +105,27 @@ Odluke korisnika nakon pregleda A/B/C (detaljni koraci u `NEXT.md` video repoa):
 
 Speechmatics govornici SPEAKER_00/02 nad instrumentalom su halucinacije.
 
+## Druga iteracija — izvedeno (2026-10-19, večer)
+
+- **Refren po Speechmaticsu, ne po procjeni iz plana:** „povijesti puna" kreće
+  117,4 (Demucs vokal: tišina 115,6–117,4), ne 113,4. „Kralju Tomislave" 122,1.
+- **Kraj C 367,247** (beat u pauzi 366,1–367,75); strofa „Kroz Bosnu…" po
+  Speechmatics granicama riječi (tekst ondje smeće), provjereno na vokalu.
+- **D = 252,308–297,1** (beat; vokal kreće 257,0).
+- **Intro/outro kao pomak**: vremena u `film.js` ostaju vremena pjesme,
+  `main.js` i `bista-scena.js` oduzimaju `pomak` (2 s); rotacija se za t < 0
+  ekstrapolira unatrag. A/B nose 3 s instrumentala u outro; C/D ne (vokal se
+  vraća odmah nakon pauze), pa je outro tih.
+- **Duvanjsko polje nije na ekranu kao činjenica**: HE kaže da je teza o
+  krunidbi ondje „do danas u potpunosti odbačena". Činjenice: A 914. (Toma
+  Arhiđakon), B pribl. 910.–928., D kip u Zagrebu 1947. (HAZU), C Split 925.
+- **Citati**: Magisterium analiza je moralna procjena, ne izvor činjenica;
+  `enrichment` je parafraza AI-ja, pa su citati uzeti iz samih dokumenata
+  (Sapientiae Christianae 5, Ivan Pavao II. UN 1995. br. 11, Gaudium et spes 75),
+  prijevod naš i tako označen u outro kartici.
+- **9:16 outro**: kartica je ispod biste → `layout.portrait.outroLookY −0,36`.
+- Render 8 videa ~4,5 min (M4 Pro), 21–36 MB; produkcija 206 ✓, veličine = lokalne.
+
 ## Mjerenja
 
 - Render 60 s, 1080p, M4 Pro s hardverskim WebGL-om: ~1 min po formatu; 24,1 MB (16:9), 23,0 MB (9:16).
@@ -113,7 +134,6 @@ Speechmatics govornici SPEAKER_00/02 nad instrumentalom su halucinacije.
 ## Otvoreno
 
 - Puštanje na pravom iPhoneu nije isprobano (provjeren samo 206).
-- Refren u A i B je nepotpun (v. NEXT.md u video repou) — popraviti na zahtjev.
 - Prava na glazbu nisu riješena (namjerno izvan opsega; stranica `noindex`).
 
 Vezani dokumenti: [README](../README.md).

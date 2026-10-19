@@ -14,20 +14,28 @@ na glazbu nisu riješena).
 | 3D model biste (GLB) i viewer spec | `dbhzhr/dbhz-3d-modeli` |
 | Landing | `site/public/` (statički) + `site/src/index.js` (Worker: video iz R2 s Range/206) |
 
-## Isječci
+## Isječci (druga iteracija, 2026-10-19)
 
-| | Pjesma (spot yD9r0grKCkA) | Trajanje | Status |
+Svaki video: intro kartica 2 s → pjesma (rez u pauzi vokala) → outro kartica 3 s.
+Uz stihove jedna povijesna činjenica i jedan citat (izvori u video repou,
+`analiza/povijesni-kontekst.md`).
+
+| | Pjesma (spot yD9r0grKCkA) | Video | Landing |
 |---|---|---|---|
-| A | 84,13–144,13 s: krunidba na Duvanjskom polju → 1. refren „Žezlo i kruna" | 60 s | 16:9 + 9:16 |
-| B | 110,04–144,13 s: samo 1. refren (landing: `#b`) | 34,1 s | 16:9 + 9:16 |
-| C | 297,1–345,07 s: „…u našem Splitu”, „Tomislav je kralj”, završna strofa (landing: `#c`) | 48 s | 16:9 + 9:16 |
+| A | 84,13–147,54 s: krunidba → cijeli 1. refren | 68,4 s | `/` |
+| B | 110,04–147,54 s: cijeli 1. refren | 42,5 s | `#b` |
+| D | 252,31–297,1 s: „Kad s perona siđeš…" → „…o junaštvu tvom" | 49,8 s | `#d` |
+| C | 297,1–367,25 s: Split, „Tomislav je kralj", „Još zemlja se mrvi", „Kroz Bosnu… Kraljevstvo tvoje" | 75,2 s | `#c` |
+
+Svi u 16:9 i 9:16.
 
 ## Novi render → web
 
 ```bash
 # u hyperframes-domovina-ai/videos/dbhz-kralj-tomislav
-npx hyperframes@0.8.174 render . -o renders/kralj-tomislav-a-16x9.mp4
-npx hyperframes@0.8.174 render . -c formati/a-9x16.html -o renders/kralj-tomislav-a-9x16.mp4
+python3 generiraj-kompozicije.py && node provjeri-trajanja.mjs
+./snapshot-storyboard.sh && python3 generiraj-storyboard.py   # boards/storyboard.html
+./render-sve.sh                                               # svih 8 u renders/
 
 # ovdje: faststart (moov na početak) pa u R2
 ffmpeg -i <render>.mp4 -c copy -movflags +faststart site/media/<ime>.mp4
