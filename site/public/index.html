@@ -43,6 +43,8 @@ h1{font-family:"Cinzel",Georgia,serif;font-weight:700;font-size:clamp(38px,7vw,8
 .player{position:relative;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 30px 80px -20px rgba(0,0,0,.75),0 0 0 1px var(--line);margin:0 auto}
 .player video{display:block;width:100%;height:auto;background:#000}
 .player.landscape{max-width:var(--max)}
+.zvuk{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:8px;background:rgba(6,14,9,.78);border:1px solid var(--gold);color:var(--cream);border-radius:999px;padding:9px 16px;font:inherit;font-size:15px;cursor:pointer;backdrop-filter:blur(6px)}
+.zvuk[hidden]{display:none}
 .player.landscape video{aspect-ratio:16/9}
 .player.portrait{max-width:420px}
 .player.portrait video{aspect-ratio:9/16}
@@ -77,9 +79,10 @@ footer p{margin:0 0 8px}
     <p class="lead">3D bista prvog hrvatskog kralja iz DBHZ digitalnog muzeja, uz pjesmu „Kralj Tomislav” Marka Perkovića Thompsona. Bista se okreće u ritmu pjesme, a kamen prelazi u broncu točno na „žezlo i kruna”.</p>
 
     <div id="player" class="player landscape">
-      <video id="video" controls playsinline preload="metadata" poster="/poster-16x9.jpg">
+      <video id="video" controls playsinline preload="auto" poster="/poster-16x9.jpg">
         <source src="/video/kralj-tomislav-a-16x9.mp4" type="video/mp4">
       </video>
+      <button type="button" id="zvuk" class="zvuk" hidden>🔊 Uključi zvuk</button>
     </div>
     <div class="formats" role="group" aria-label="Isječak pjesme">
       <button type="button" data-isjecak="a" aria-pressed="true">A · 60 s · krunidba i refren</button>
@@ -133,6 +136,19 @@ footer p{margin:0 0 8px}
   var stanje = { isjecak: location.hash === "#b" ? "b" : "a", format: "16x9" };
   // Na uskom ekranu u portretu kreni s 9:16.
   if (window.matchMedia("(max-width: 600px) and (orientation: portrait)").matches) stanje.format = "9x16";
+  var zvuk = document.getElementById("zvuk");
+  // Autoplay: prvo sa zvukom; ako preglednik to blokira (iOS, Safari, Chrome
+  // bez interakcije), pusti bez zvuka i ponudi gumb za zvuk.
+  function pokreni() {
+    video.muted = false;
+    video.play().catch(function () {
+      video.muted = true;
+      video.play().catch(function () {});
+    });
+  }
+  function osvjeziZvuk() { zvuk.hidden = !(video.muted && !video.paused); }
+  ["play", "pause", "volumechange"].forEach(function (e) { video.addEventListener(e, osvjeziZvuk); });
+  zvuk.addEventListener("click", function () { video.muted = false; video.play(); });
   function prikazi() {
     var f = stanje.format;
     player.className = "player " + (f === "16x9" ? "landscape" : "portrait");
@@ -140,6 +156,7 @@ footer p{margin:0 0 8px}
     video.src = "/video/kralj-tomislav-" + stanje.isjecak + "-" + f + ".mp4";
     formatButtons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.format === f)); });
     isjecakButtons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.isjecak === stanje.isjecak)); });
+    pokreni();
   }
   formatButtons.forEach(function (b) { b.addEventListener("click", function () { stanje.format = b.dataset.format; prikazi(); }); });
   isjecakButtons.forEach(function (b) {
@@ -150,6 +167,7 @@ footer p{margin:0 0 8px}
     });
   });
   if (stanje.isjecak !== "a" || stanje.format !== "16x9") prikazi();
+  else pokreni();
 })();
 </script>
 </body>
