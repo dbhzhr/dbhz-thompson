@@ -58,6 +58,17 @@ Riječi u `film.js` su ručno ispravljene, a vremena su iz transkripta.
 - **9:16**: FitCamera je tamo ograničena širinom pa je bista mala → `zoom 0,8`,
   `shiftY −0,025`; približavanje na refrenu 0,95 (s 0,9 prsten i podnožje izlaze iz kadra u 16:9).
 
+## Isječak B (2026-10-19)
+
+- **Rub reza mjeriti na Demucs vokalu, ne na transkriptu.** Plan 108,3 s bio je
+  početak riječi „svoj" (vokal −16 dB od 108,4 do 109,8, zatim < −45 dB). Rez je
+  pomaknut na beat 110,04 → 34,09 s, do „Žezlo" (111,91) ostaje ~1,9 s.
+- Zato je uvod ubrzan (`intro.tempo 0,5`), a kamera na početku gleda više
+  (`lookY 0,2 → 0` do „Žezlo"): u 9:16 je kruna inače ulazila u podnaslov.
+- Whisper između „Žezlo i kruna" (113,4) i „od Jadranskog mora" (126,2) nema
+  riječi, ali vokal traje 117,5–126 — prvi red refrena zato ostaje do 125,8.
+- Render: ~22 s po formatu, 16,5 MB (16:9) i 17,2 MB (9:16); produkcija 206 ✓.
+
 ## Mjerenja
 
 - Render 60 s, 1080p, M4 Pro s hardverskim WebGL-om: ~1 min po formatu; 24,1 MB (16:9), 23,0 MB (9:16).
@@ -66,7 +77,7 @@ Riječi u `film.js` su ručno ispravljene, a vremena su iz transkripta.
 ## Otvoreno
 
 - Puštanje na pravom iPhoneu nije isprobano (provjeren samo 206).
-- Korisnik pregledava A; zatim B (108,3–144,13) pa C (296,6–335,6).
+- Isječak C (296,6–335,6) — rubove prvo provjeriti na vokalu.
 - Prava na glazbu nisu riješena (namjerno izvan opsega; stranica `noindex`).
 
 Vezani dokumenti: [README](../README.md).

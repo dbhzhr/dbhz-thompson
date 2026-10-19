@@ -47,6 +47,7 @@ h1{font-family:"Cinzel",Georgia,serif;font-weight:700;font-size:clamp(38px,7vw,8
 .player.portrait{max-width:420px}
 .player.portrait video{aspect-ratio:9/16}
 .formats{display:flex;gap:8px;margin:18px 0 0;flex-wrap:wrap}
+.formats+.formats{margin-top:10px}
 .formats button{background:rgba(239,233,216,.04);border:1px solid var(--line);color:var(--cream);border-radius:999px;padding:8px 16px;font:inherit;font-size:14px;cursor:pointer}
 .formats button[aria-pressed="true"]{border-color:var(--gold);background:rgba(217,158,18,.12)}
 section{padding:72px 0;border-top:1px solid rgba(239,233,216,.06)}
@@ -80,6 +81,10 @@ footer p{margin:0 0 8px}
         <source src="/video/kralj-tomislav-a-16x9.mp4" type="video/mp4">
       </video>
     </div>
+    <div class="formats" role="group" aria-label="Isječak pjesme">
+      <button type="button" data-isjecak="a" aria-pressed="true">A · 60 s · krunidba i refren</button>
+      <button type="button" data-isjecak="b" aria-pressed="false">B · 34 s · samo refren</button>
+    </div>
     <div class="formats" role="group" aria-label="Format videa">
       <button type="button" data-format="16x9" aria-pressed="true">16:9 · YouTube</button>
       <button type="button" data-format="9x16" aria-pressed="false">9:16 · Reels / Shorts</button>
@@ -94,7 +99,7 @@ footer p{margin:0 0 8px}
       <p class="sub">Svaki isječak je ista 3D scena, montirana na drugi dio pjesme. Vremena su izmjerena iz pjesme (ritam i stihovi), ne odokativno.</p>
       <div class="cards">
         <div class="card"><b>A · 60 s</b><h3>Krunidba i refren</h3><p>„Na Duvanjskom polju ravnom okruniše kralja” do prvog refrena „Žezlo i kruna”.</p></div>
-        <div class="card"><b>B · 36 s</b><h3>Samo refren</h3><p>Kratki rez za Reels i Shorts: „Žezlo i kruna, od Jadranskog mora pa do rijeke Drave”.</p><span class="soon">u izradi</span></div>
+        <div class="card"><b>B · 34 s</b><h3>Samo refren</h3><p>Kratki rez za Reels i Shorts: „Žezlo i kruna, od Jadranskog mora pa do rijeke Drave”.</p></div>
         <div class="card"><b>C · 39 s</b><h3>Tomislav je kralj</h3><p>„Blagoslov od pape, Tomislav je kralj” i završni refren.</p><span class="soon">u izradi</span></div>
       </div>
     </div>
@@ -122,17 +127,29 @@ footer p{margin:0 0 8px}
 (function () {
   var player = document.getElementById("player");
   var video = document.getElementById("video");
-  var buttons = document.querySelectorAll(".formats button");
-  function setFormat(f) {
-    var landscape = f === "16x9";
-    player.className = "player " + (landscape ? "landscape" : "portrait");
-    video.poster = "/poster-" + f + ".jpg";
-    video.src = "/video/kralj-tomislav-a-" + f + ".mp4";
-    buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.format === f)); });
-  }
-  buttons.forEach(function (b) { b.addEventListener("click", function () { setFormat(b.dataset.format); }); });
+  var formatButtons = document.querySelectorAll("[data-format]");
+  var isjecakButtons = document.querySelectorAll("[data-isjecak]");
+  // #b u adresi otvara isječak B (za dijeljenje linka na kratki rez).
+  var stanje = { isjecak: location.hash === "#b" ? "b" : "a", format: "16x9" };
   // Na uskom ekranu u portretu kreni s 9:16.
-  if (window.matchMedia("(max-width: 600px) and (orientation: portrait)").matches) setFormat("9x16");
+  if (window.matchMedia("(max-width: 600px) and (orientation: portrait)").matches) stanje.format = "9x16";
+  function prikazi() {
+    var f = stanje.format;
+    player.className = "player " + (f === "16x9" ? "landscape" : "portrait");
+    video.poster = "/poster-" + f + ".jpg";
+    video.src = "/video/kralj-tomislav-" + stanje.isjecak + "-" + f + ".mp4";
+    formatButtons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.format === f)); });
+    isjecakButtons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.isjecak === stanje.isjecak)); });
+  }
+  formatButtons.forEach(function (b) { b.addEventListener("click", function () { stanje.format = b.dataset.format; prikazi(); }); });
+  isjecakButtons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      stanje.isjecak = b.dataset.isjecak;
+      history.replaceState(null, "", stanje.isjecak === "b" ? "#b" : location.pathname);
+      prikazi();
+    });
+  });
+  if (stanje.isjecak !== "a" || stanje.format !== "16x9") prikazi();
 })();
 </script>
 </body>
