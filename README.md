@@ -20,7 +20,7 @@ na glazbu nisu riješena).
 |---|---|---|---|
 | A | 84,13–144,13 s: krunidba na Duvanjskom polju → 1. refren „Žezlo i kruna" | 60 s | 16:9 + 9:16 |
 | B | 110,04–144,13 s: samo 1. refren (landing: `#b`) | 34,1 s | 16:9 + 9:16 |
-| C | 296,6–335,6 s: „Blagoslov od pape, Tomislav je kralj" + završni refren | ~39 s | planirano |
+| C | 297,1–345,07 s: „…u našem Splitu”, „Tomislav je kralj”, završna strofa (landing: `#c`) | 48 s | 16:9 + 9:16 |
 
 ## Novi render → web
 

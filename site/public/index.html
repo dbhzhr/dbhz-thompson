@@ -87,6 +87,7 @@ footer p{margin:0 0 8px}
     <div class="formats" role="group" aria-label="Isječak pjesme">
       <button type="button" data-isjecak="a" aria-pressed="true">A · 60 s · krunidba i refren</button>
       <button type="button" data-isjecak="b" aria-pressed="false">B · 34 s · samo refren</button>
+      <button type="button" data-isjecak="c" aria-pressed="false">C · 48 s · Tomislav je kralj</button>
     </div>
     <div class="formats" role="group" aria-label="Format videa">
       <button type="button" data-format="16x9" aria-pressed="true">16:9 · YouTube</button>
@@ -103,7 +104,7 @@ footer p{margin:0 0 8px}
       <div class="cards">
         <div class="card"><b>A · 60 s</b><h3>Krunidba i refren</h3><p>„Na Duvanjskom polju ravnom okruniše kralja” do prvog refrena „Žezlo i kruna”.</p></div>
         <div class="card"><b>B · 34 s</b><h3>Samo refren</h3><p>Kratki rez za Reels i Shorts: „Žezlo i kruna, od Jadranskog mora pa do rijeke Drave”.</p></div>
-        <div class="card"><b>C · 39 s</b><h3>Tomislav je kralj</h3><p>„Blagoslov od pape, Tomislav je kralj” i završni refren.</p><span class="soon">u izradi</span></div>
+        <div class="card"><b>C · 48 s</b><h3>Tomislav je kralj</h3><p>„Blagoslov od Pape – Tomislav je kralj” i završna strofa „Još zemlja se mrvi”.</p></div>
       </div>
     </div>
   </section>
@@ -132,8 +133,8 @@ footer p{margin:0 0 8px}
   var video = document.getElementById("video");
   var formatButtons = document.querySelectorAll("[data-format]");
   var isjecakButtons = document.querySelectorAll("[data-isjecak]");
-  // #b u adresi otvara isječak B (za dijeljenje linka na kratki rez).
-  var stanje = { isjecak: location.hash === "#b" ? "b" : "a", format: "16x9" };
+  // #b / #c u adresi otvara taj isječak (za dijeljenje linka).
+  var stanje = { isjecak: /^#[bc]$/.test(location.hash) ? location.hash.slice(1) : "a", format: "16x9" };
   // Na uskom ekranu u portretu kreni s 9:16.
   if (window.matchMedia("(max-width: 600px) and (orientation: portrait)").matches) stanje.format = "9x16";
   var zvuk = document.getElementById("zvuk");
@@ -162,7 +163,7 @@ footer p{margin:0 0 8px}
   isjecakButtons.forEach(function (b) {
     b.addEventListener("click", function () {
       stanje.isjecak = b.dataset.isjecak;
-      history.replaceState(null, "", stanje.isjecak === "b" ? "#b" : location.pathname);
+      history.replaceState(null, "", stanje.isjecak === "a" ? location.pathname : "#" + stanje.isjecak);
       prikazi();
     });
   });

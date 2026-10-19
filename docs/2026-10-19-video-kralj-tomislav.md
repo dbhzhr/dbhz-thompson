@@ -69,6 +69,14 @@ Riječi u `film.js` su ručno ispravljene, a vremena su iz transkripta.
   riječi, ali vokal traje 117,5–126 — prvi red refrena zato ostaje do 125,8.
 - Render: ~22 s po formatu, 16,5 MB (16:9) i 17,2 MB (9:16); produkcija 206 ✓.
 
+## Isječak C (2026-10-19)
+
+- 297,1–345,07 (48 s): kraj 335,6 iz plana presjekao bi strofu; ona završava ~344,2.
+- Whisper završni dio nije čuo ni s promptom (prompt ga je naveo da ponavlja
+  prompt). Tekst je dao korisnik; vremena riječi su iz transkripta bez VAD-a.
+- Tekst pjesme ne preuzimati s lyrics stranica — samo od korisnika.
+- Pauza u vokalu 311–322,8 nosi naslov i odjavu; na kraju se pjeva do zadnje sekunde.
+
 ## Mjerenja
 
 - Render 60 s, 1080p, M4 Pro s hardverskim WebGL-om: ~1 min po formatu; 24,1 MB (16:9), 23,0 MB (9:16).
@@ -77,7 +85,7 @@ Riječi u `film.js` su ručno ispravljene, a vremena su iz transkripta.
 ## Otvoreno
 
 - Puštanje na pravom iPhoneu nije isprobano (provjeren samo 206).
-- Isječak C (296,6–335,6) — rubove prvo provjeriti na vokalu.
+- Refren u A i B je nepotpun (v. NEXT.md u video repou) — popraviti na zahtjev.
 - Prava na glazbu nisu riješena (namjerno izvan opsega; stranica `noindex`).
 
 Vezani dokumenti: [README](../README.md).
