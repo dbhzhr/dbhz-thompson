@@ -126,6 +126,26 @@ Speechmatics govornici SPEAKER_00/02 nad instrumentalom su halucinacije.
 - **9:16 outro**: kartica je ispod biste → `layout.portrait.outroLookY −0,36`.
 - Render 8 videa ~4,5 min (M4 Pro), 21–36 MB; produkcija 206 ✓, veličine = lokalne.
 
+## Repoi javni (2026-10-20)
+
+Oba repoa (`dbhzhr/dbhz-thompson` i `domovinatv/hyperframes-domovina-ai`) su
+20. 10. 2026. prebačeni u javne, da ih Herman Zvonimir Došilović može forkati.
+Poslano mu je i svih 8 rendera druge iteracije.
+
+Pregled prije i poslije objave, kroz sve commitove:
+
+- Tajni nema: bez API ključeva, tokena, privatnih ključeva i `.env`. Cloudflare
+  `account_id` u `site/wrangler.jsonc` nije tajna.
+- WhatsApp JID-ovi grupa (jedan sadrži broj mobitela) bili su u `NEXT.md` oba
+  videa. Maknuti su commitom `3e31014` u video repou, ali **ostaju u povijesti**.
+  Povijest namjerno nije prepisivana.
+- Javno je i ovo, svjesno: isječci pjesme (`assets/pjesma-*.m4a`), transkripcija
+  stihova (`analiza/stihovi-faster-whisper.json`) i neobjavljeni video
+  `odds-blueprint` (nacrt YouTube opisa).
+
+Pravilo od sada: u commitane bilješke ne upisivati JID-ove, brojeve ni druge
+osobne podatke, jer su repoi javni.
+
 ## Mjerenja
 
 - Render 60 s, 1080p, M4 Pro s hardverskim WebGL-om: ~1 min po formatu; 24,1 MB (16:9), 23,0 MB (9:16).
@@ -134,6 +154,7 @@ Speechmatics govornici SPEAKER_00/02 nad instrumentalom su halucinacije.
 ## Otvoreno
 
 - Puštanje na pravom iPhoneu nije isprobano (provjeren samo 206).
-- Prava na glazbu nisu riješena (namjerno izvan opsega; stranica `noindex`).
+- Prava na glazbu nisu riješena (namjerno izvan opsega; stranica `noindex`),
+  a isječci pjesme su od 2026-10-20 javni u video repou.
 
 Vezani dokumenti: [README](../README.md).
