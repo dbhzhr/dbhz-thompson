@@ -39,3 +39,7 @@ npx wrangler deploy
 Zamke (iz odds.domovina.ai): static assets ne vraćaju 206 pa Safari/iOS ne
 pušta video — zato Worker + R2; lokalni DNS pamti negativan odgovor ako se
 domena provjerava prije deploya (`--resolve` ili flush cache).
+
+## Dokumenti
+
+- [2026-10-19 Video „Kralj Tomislav"](docs/2026-10-19-video-kralj-tomislav.md) — tekst pjesme, zamke, odluke, mjerenja
