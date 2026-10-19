@@ -77,6 +77,34 @@ Riječi u `film.js` su ručno ispravljene, a vremena su iz transkripta.
 - Tekst pjesme ne preuzimati s lyrics stranica — samo od korisnika.
 - Pauza u vokalu 311–322,8 nosi naslov i odjavu; na kraju se pjeva do zadnje sekunde.
 
+## Druga iteracija — plan (2026-10-19, popodne)
+
+Odluke korisnika nakon pregleda A/B/C (detaljni koraci u `NEXT.md` video repoa):
+
+- **Svaki isječak počinje i završava u pauzi vokala.** Prave tišine u miksu nema
+  (glazba svira stalno, minimum ~−23 dB), pa „tišina" = pauza vokala na Demucs
+  stemu (< −40 dB, ≥ 0,8 s), rez na beatu + kratki fade. Mjerenje je pokazalo da
+  A/B (kraj 144,13) i C (kraj 345,07) režu vokal: 1. refren traje do 145,4, a
+  vokal je neprekinut 322,8–366,1. Novi krajevi: A/B 147,54, C ≈ 367.
+- **Pun refren u A/B** (whisper je propustio četiri retka; „Žezlo i kruna" je
+  stajalo 12 s na ekranu).
+- **Intro 2 s + outro 3 s kartica** na svakom videu — ljudi će ih dijeliti na
+  WhatsAppu, pa video mora sam reći što je i kamo vodi.
+- **Isječak D** „Kad s perona siđeš…": heatmap gledanosti spota ima vrh na 259 s,
+  a A/B dio je među slabije gledanima. Prijedlog 252–297,1 (spaja se na C).
+- **Povijesni kontekst na ekranu — samo s provjerenim izvorom.** Magisterium kasnije.
+
+### Izvori podataka
+
+| Izvor | Za što | Pouzdanost |
+|---|---|---|
+| Demucs vokal + RMS | rubovi isječaka, pauze | mjerenje, mjerodavno |
+| Speechmatics (domovina.ai obrada, `/Volumes/DOMOVINA2TB/fetch_domovina_tv_output/_unlisted/…yD9r0grKCkA.*`) | vremena riječi | točno 89–145 i 257–310 s; od 322 s tekst smeće, granice riječi upotrebljive |
+| faster-whisper | vremena riječi (A/B/C prva verzija) | tekst često krivo; za završni refren neupotrebljiv i s promptom |
+| tekst od korisnika | titlovi | jedini dopušteni izvor teksta (ne kopirati s lyrics stranica ni iz opisa spota) |
+
+Speechmatics govornici SPEAKER_00/02 nad instrumentalom su halucinacije.
+
 ## Mjerenja
 
 - Render 60 s, 1080p, M4 Pro s hardverskim WebGL-om: ~1 min po formatu; 24,1 MB (16:9), 23,0 MB (9:16).
